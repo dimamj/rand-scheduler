@@ -1,0 +1,27 @@
+
+form {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+form > * {
+    margin: 5px;
+}
+
+form .login-field {
+    width: 80%;
+    flex-shrink: 0;
+}
+
+form > button {
+    width: 20%;
+}
+
+.login-section {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 15%;
+}
