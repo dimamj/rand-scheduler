@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @JsonComponent
 public class LocalDateJsonConverter {
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static class Serializer extends JsonSerializer<LocalDate> {
         @Override

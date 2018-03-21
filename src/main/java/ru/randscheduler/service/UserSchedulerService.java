@@ -1,7 +1,6 @@
 package ru.randscheduler.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.randscheduler.data.user_data.Action;
 import ru.randscheduler.data.user_data.FilterData;

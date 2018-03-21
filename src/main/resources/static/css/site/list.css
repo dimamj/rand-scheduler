@@ -1,0 +1,60 @@
+.scheduler {
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid #d7d6d6;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    margin: 20px 0 20px 0;
+    cursor: pointer;
+    position: relative;
+    transition: 1s;
+}
+
+.scheduler_id {
+    min-width: 5%;
+}
+
+.scheduler_name {
+    width: 50%;
+}
+
+.scheduler_info span {
+    vertical-align: middle;
+}
+
+.scheduler_info {
+    min-width: 130px;
+    margin-left: auto;
+}
+
+.scheduler:hover {
+    padding-right: 45px;
+}
+
+.scheduler:hover .control_panel {
+    opacity: 1;
+}
+
+.control_panel {
+    cursor: default;
+
+    width: 43px;
+    height: 100%;
+    border-left: 1px solid #d7d6d6;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transition: 1s;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.control_panel img {
+    cursor: pointer;
+    margin: 4px 0 4px 0;
+}

@@ -1,6 +1,7 @@
 package ru.randscheduler.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.context.support.WebApplicationObjectSupport;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 import ru.randscheduler.tools.UserCookieUtils;
 
@@ -22,7 +23,7 @@ public class FreemarkerViewConf extends FreeMarkerView {
 
         String userId = UserCookieUtils.getUserIdVal(request);
         model.put("userShortId", userId.substring(0, 1).toUpperCase());
-        model.put("jsonMapper", new ObjectMapper());
+        model.put("jsonMapper", getWebApplicationContext().getBean("jacksonObjectMapper"));
     }
 }
 

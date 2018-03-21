@@ -1,16 +1,19 @@
 package ru.randscheduler.web.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.randscheduler.data.MonthWeek;
 import ru.randscheduler.data.SchedulerCreator;
 import ru.randscheduler.data.SchedulerViewData;
 import ru.randscheduler.data.user_data.FilterData;
+import ru.randscheduler.repository.UserRepository;
+import ru.randscheduler.tools.UserCookieUtils;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+
+import static ru.randscheduler.tools.UserCookieUtils.COOKIE_ID;
 
 /**
  * Created by dimaMJ on 14.03.2018
@@ -18,14 +21,22 @@ import java.time.YearMonth;
 @RestController
 @RequestMapping("/scheduler")
 @RequiredArgsConstructor
-public class SchedulerCreatorCtrl {
+public class SchedulerApiCtrl {
 
     private final SchedulerCreator defaultSchedulerCreator;
+    private final UserRepository userRepository;
 
     @GetMapping("/create")
     public SchedulerViewData create(FilterData filterData) {
         upFromToDates(filterData);
         return defaultSchedulerCreator.create(filterData);
+    }
+
+    @PostMapping(value = "/remove", produces = "text/plain")
+    public ResponseEntity remove(@CookieValue(COOKIE_ID) String userId,
+                                 @RequestParam("id") int id) {
+        userRepository.removeScheduler(userId, id);
+        return ResponseEntity.ok("ok");
     }
 
     private void upFromToDates(FilterData f) {
@@ -50,6 +61,8 @@ public class SchedulerCreatorCtrl {
                 f.upDates(month.atDay(1), month.atEndOfMonth());
                 break;
         }
+
+        if (f.getFrom().isBefore(now)) f.setFrom(now);
     }
 
 

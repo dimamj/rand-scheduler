@@ -5,26 +5,36 @@
 <link rel="stylesheet" href="/static/css/lib/selectize.default.min.css"/>
 </#macro>
 
-<@c.page "Добавить планировщик" resources "ng-app='scheduler-page' ng-controller='ctrl'">
+<@c.page "Добавить планировщик" resources "ng-app='scheduler-page' ng-controller='main'">
 <h4>Добавить планировщик</h4>
 
+<!-- вынести в отдельный ftl и подключить через include -->
 <section class="filter">
     <span class="title">Фильтр</span>
-    <div>
-        <label for="scheduler-type">Тип планировщика:</label>
-        <select id="scheduler-type"></select>
+    <form>
+        <div class="form-group">
+            <label for="scheduler-name">Название</label>
+            <input id="scheduler-name" type="text" class="form-control" placeholder="Назовите планировщик" required>
+        </div>
 
-        <label for="actions">Действия:</label>
-        <input id="actions" type="text">
+        <div class="form-group">
+            <label for="scheduler-type">Тип планировщика:</label>
+            <select id="scheduler-type"></select>
+        </div>
 
-        <button type="button" class="btn btn-primary" disabled>Сформировать</button>
-    </div>
+        <div class="form-group">
+            <label for="actions">Действия:</label>
+            <input id="actions" type="text" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" disabled>Сформировать</button>
+    </form>
 </section>
 
 <section class="calendar">
     <div class="days-wrap">
         <div class="day" ng-repeat="(key,val) in vm.days" ng-class="val.class">
-            <span class="date">{{key}}</span>
+            <span class="date">{{key | date : 'd.MM.yy'}}</span>
             <ul>
                 <li ng-repeat="action in val.actions">
                     {{action}}

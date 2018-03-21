@@ -12,6 +12,8 @@ import java.util.Set;
  */
 @Data
 public class FilterData {
+    private String schedulerName;
+
     private LocalDate from;
     private LocalDate to;
 

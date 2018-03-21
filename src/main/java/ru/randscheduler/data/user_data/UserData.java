@@ -9,6 +9,7 @@ import org.mongodb.morphia.annotations.Property;
 import ru.randscheduler.data.annotations.ConvertMapToSet;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by dimaMJ on 31.01.2018
@@ -20,7 +21,7 @@ public class UserData {
     @Id
     private String id;
 
-    @Property
+    @Property(concreteClass = ConcurrentHashMap.class)
     @ConvertMapToSet
     private Map<Integer, SchedulerData> schedulers = Maps.newConcurrentMap();
 

@@ -2,9 +2,9 @@
 
     var app = angular.module("scheduler-page", ["ngAnimate"]);
 
-    var parseDateFormat = "dd.mm.yy";
+    var parseDateFormat = "yy-mm-dd";
 
-    app.controller("ctrl", function ($scope, $http) {
+    app.controller("main", function ($scope, $http) {
             var vm = $scope.vm = {};
 
             vm.showSaveBtn = false;
@@ -17,6 +17,7 @@
                     vm.showSaveBtn = false;
                     $http.get("/scheduler/create", {params: filter.getData()})
                         .then(loadScheduler);
+                    return false;
                 }
             });
 

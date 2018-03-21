@@ -7,6 +7,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Created by dimaMJ on 14.03.2018
@@ -41,7 +42,13 @@ abstract class DefaultRepository<ID, T> {
         else datastore.save(collection, entity);
     }
 
-    private Query<T> createQuery() {
+    public T get(ID id, Consumer<Query<T>> queryConsumer) {
+        Query<T> q = createQuery().field("_id").equal(id);
+        queryConsumer.accept(q);
+        return q.get();
+    }
+
+    protected Query<T> createQuery() {
         if (collection == null) return datastore.createQuery(entityClass);
         else return datastore.createQuery(collection, entityClass);
     }

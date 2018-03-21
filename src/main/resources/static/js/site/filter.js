@@ -1,9 +1,18 @@
 function Filter(opt) {
+    var $schedulerName = $("#scheduler-name");
     var $actions = $("#actions");
     var $schedulerType = $("#scheduler-type");
     var $btn = $(".filter .btn");
+    var requiredFields = {
+        name: 1,
+        actions: 1
+    };
 
     (function () {
+        $schedulerName.on("keyup", function () {
+            changeBtnCondition($(this).val(), "name");
+        });
+
         $actions.selectize({
             plugins: ['restore_on_backspace', 'remove_button'],
             persist: false,
@@ -16,8 +25,7 @@ function Filter(opt) {
                 }
             },
             onChange: function (val) {
-                if (val) $btn.removeAttr("disabled");
-                else $btn.attr("disabled", true);
+                changeBtnCondition(val, "actions");
             }
         });
 
@@ -40,12 +48,24 @@ function Filter(opt) {
                 if (!$(this).is(":disabled")) opt.onSubmit();
             })
         }
+
+        function changeBtnCondition(val, name) {
+            if (val) delete requiredFields[name];
+            else requiredFields[name] = 1;
+
+            if (Object.keys(requiredFields).length === 0) {
+                $btn.removeAttr("disabled")
+            } else {
+                $btn.attr("disabled", true);
+            }
+        }
     })();
 
     this.getData = function () {
         return {
             actions: $actions.val(),
-            type: $schedulerType.val()
+            type: $schedulerType.val(),
+            schedulerName: $schedulerName.val()
         };
     };
 }
