@@ -1,0 +1,16 @@
+
+.scheduler-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    vertical-align: middle;
+    border-radius: 50px;
+}
+
+.scheduler-status_active {
+    background-color: #4CAF50;
+}
+
+.scheduler-status_not-active {
+    background-color: #9e9e9e87;
+}

@@ -1,17 +1,22 @@
 <#import "common.ftl" as c/>
 
-<#macro resources>
+<#macro css>
 <link rel="stylesheet" href="/static/css/site/list.css"/>
 </#macro>
 
-<@c.page "Список планировщиков" resources "ng-app='list-page' ng-controller='main'">
+
+<@c.page "Список планировщиков" css js "ng-app='list-page' ng-controller='main'">
 <h4>Список планировщиков</h4>
 
 <section class="list">
     <div class="scheduler" ng-repeat="s in vm.schedulers" ng-click="vm.schedulerClick(s,$event.target)">
-        <span class="scheduler_id">{{'#' + ($index+1)}}</span>
-        <span class="scheduler_name">{{s.filterData.schedulerName}}</span>
-        <div class="scheduler_info">
+        <span class="scheduler__id">{{'#' + ($index+1)}}</span>
+        <span class="scheduler__name">{{s.filterData.schedulerName}}</span>
+        <div class="scheduler__actions">
+            <span ng-if="vm.isValid(s.todayAction)"><span style="font-weight: bold">Сегодня:</span> {{s.todayAction.action}}</span>
+            <span ng-if="vm.isValid(s.nextAction)"><span style="font-weight: 500;color: #a3a3a3;">Следующее:</span> {{s.nextAction.action}} ({{s.nextAction.date | date : 'd.MM EEE'}})</span>
+        </div>
+        <div class="scheduler__info">
             <div title="Дата проведения">
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAmVBMVEU0mNs3mtw5mtw+nd1Cn95Jo99LpN9QpuBXquFaq+JereJgruNmseRps+RrtOVstOVtteVvtuVxt+Z0uOZ4uueHwuqIw+qMxOubzO2u1vGx1/G32vK52/PB3/TC4PTF4vXI4/XT6ffW6vja7Pja7Pnf7/ni8Prl8vrn8/vq9Pvt9vzx+Pzx+P3y+f30+f31+v34+/79/v/////45dwQAAAAqElEQVQYV5XQxw4CMQwE0KF31hRjeiemLRD//8eR7MIBCSExB4/yJCuSYTHXe1aW5o04usA09giYvPGKx7YU2uO0K+XodQGvcM5tcD/CXSImQMQsAYFbwPjwhxxTF4a+8CMZNohqLaIyEdWbRDmq2So1k/Dt/mz2AxPm5oC5wsztPvO/61+xJ9IailRFpDMQ+Xf9GxbnquO1ak9VJ0tVHAPOCp/3SLw9AYlkMC2QgfHwAAAAAElFTkSuQmCC">
                 <span>{{s.filterData.from | date : 'd.MM'}} - {{s.filterData.to | date : 'd.MM'}}</span>
@@ -25,19 +30,20 @@
                 <span>{{s.futureActionCount}}</span>
             </div>
         </div>
-        <div class="control_panel">
-            <img ng-click="vm.removeScheduler(s.id)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAh1BMVEXnTDznTT7pWkvpXE7qYlTqY1XrZ1nugnfug3jvhHnvhnvviH3viX/vioDwjYPwkYfxk4nxlIvxl47ym5L0sKn1sar1s6z1tK32urP2urT2u7X2vrj2v7n3wbv3xcD4yMP74uD75OL85uP98fD+9/f++Pf++fj++vr++/r//f3//v3//v7///8wxxZbAAAAnklEQVQYV13OyVICURAF0cQGWsABFHAWmeW9/P/vY9FVGnA3lXFWhbpq3o3V5/5a0Q9gHjaB3o/4Bal1AtDb8Eu3eRoMqMPQRQnjCXf96CZuW/Bf08QrbYvipbbFQLdpNycT8xdgmVjv/qxTrgyWivX+wuBFfIgebwdRnxyjRsV9aIMzAG6Lpn5jfUwLfRWtU8ad6X7IWzx/CFLrUT0DWY4cqUcSKEEAAAAASUVORK5CYII=">
+        <div class="scheduler__control-panel">
+            <img ng-click="vm.removeScheduler(s.id, $index)"
+                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAh1BMVEXnTDznTT7pWkvpXE7qYlTqY1XrZ1nugnfug3jvhHnvhnvviH3viX/vioDwjYPwkYfxk4nxlIvxl47ym5L0sKn1sar1s6z1tK32urP2urT2u7X2vrj2v7n3wbv3xcD4yMP74uD75OL85uP98fD+9/f++Pf++fj++vr++/r//f3//v3//v7///8wxxZbAAAAnklEQVQYV13OyVICURAF0cQGWsABFHAWmeW9/P/vY9FVGnA3lXFWhbpq3o3V5/5a0Q9gHjaB3o/4Bal1AtDb8Eu3eRoMqMPQRQnjCXf96CZuW/Bf08QrbYvipbbFQLdpNycT8xdgmVjv/qxTrgyWivX+wuBFfIgebwdRnxyjRsV9aIMzAG6Lpn5jfUwLfRWtU8ad6X7IWzx/CFLrUT0DWY4cqUcSKEEAAAAASUVORK5CYII=">
         </div>
     </div>
 </section>
 
+</@c.page>
+
+<#macro js>
 <script>
     var data = {
         schedulers: ${jsonMapper.writeValueAsString(schedulers)}
     };
 </script>
-
-<script type="text/javascript" src="/static/js/lib/angular.min.js"></script>
 <script type="text/javascript" src="/static/js/site/list.js"></script>
-
-</@c.page>
+</#macro>

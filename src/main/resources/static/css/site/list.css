@@ -11,19 +11,23 @@
     transition: 1s;
 }
 
-.scheduler_id {
+.scheduler__id {
     min-width: 5%;
 }
 
-.scheduler_name {
-    width: 50%;
+.scheduler__name {
+    min-width: 30%;
 }
 
-.scheduler_info span {
+.scheduler__actions{
+    min-width: 30%;
+}
+
+.scheduler__info span {
     vertical-align: middle;
 }
 
-.scheduler_info {
+.scheduler__info {
     min-width: 130px;
     margin-left: auto;
 }
@@ -32,11 +36,11 @@
     padding-right: 45px;
 }
 
-.scheduler:hover .control_panel {
+.scheduler:hover .scheduler__control-panel {
     opacity: 1;
 }
 
-.control_panel {
+.scheduler__control-panel {
     cursor: default;
 
     width: 43px;
@@ -54,7 +58,11 @@
     flex-direction: column;
 }
 
-.control_panel img {
+.scheduler__control-panel img {
     cursor: pointer;
     margin: 4px 0 4px 0;
+}
+
+.scheduler__actions > span {
+    display: block;
 }

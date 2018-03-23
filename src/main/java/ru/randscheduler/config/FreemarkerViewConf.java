@@ -22,7 +22,7 @@ public class FreemarkerViewConf extends FreeMarkerView {
         super.exposeHelpers(model, request);
 
         String userId = UserCookieUtils.getUserIdVal(request);
-        model.put("userShortId", userId.substring(0, 1).toUpperCase());
+        if (userId != null) model.put("userShortId", userId.substring(0, 1).toUpperCase());
         model.put("jsonMapper", getWebApplicationContext().getBean("jacksonObjectMapper"));
     }
 }

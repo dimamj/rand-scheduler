@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.randscheduler.data.user_data.Action;
 import ru.randscheduler.data.user_data.FilterData;
 import ru.randscheduler.data.user_data.SchedulerData;
 import ru.randscheduler.repository.UserRepository;
@@ -16,6 +17,7 @@ import ru.randscheduler.tools.UserCookieUtils;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ru.randscheduler.tools.UserCookieUtils.COOKIE_ID;
@@ -47,6 +49,8 @@ public class SchedulerListCtrl {
         private FilterData filterData;
         private int totalActions;
         private int futureActionCount;
+        private Action todayAction;
+        private Action nextAction;
 
         public SchedulerShortViewData(SchedulerData d) {
             LocalDate now = LocalDate.now();
@@ -56,6 +60,12 @@ public class SchedulerListCtrl {
             this.futureActionCount = (int) d.getActions().stream()
                     .filter(a -> a.getDate().isAfter(now) || a.getDate().isEqual(now))
                     .count();
+
+            this.todayAction = d.getActions().stream()
+                    .filter(a -> a.getDate().equals(now)).findFirst().orElse(null);
+
+            this.nextAction = d.getActions().stream()
+                    .filter(a -> a.getDate().isAfter(now)).findFirst().orElse(null);
         }
     }
 }

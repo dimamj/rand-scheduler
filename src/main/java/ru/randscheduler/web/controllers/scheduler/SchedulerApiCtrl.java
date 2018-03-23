@@ -1,4 +1,4 @@
-package ru.randscheduler.web.controllers;
+package ru.randscheduler.web.controllers.scheduler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

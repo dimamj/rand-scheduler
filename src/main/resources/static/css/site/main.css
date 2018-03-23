@@ -3,39 +3,39 @@ html, body {
     min-width: 400px;
 }
 
-header {
-    padding: 20px;
+.header {
+    padding: 20px 15px;
+
 }
 
-header > .flex-container {
+.header__flex-container {
     display: inline-flex;
     width: 100%;
 }
 
-header .menu {
+.header__menu {
     margin-left: auto;
 }
 
-header ul a {
+.header__menu ul a {
     color: black;
     top: 0;
-    transition: top 0.3s ease-in-out;
     position: relative;
     text-decoration: none;
 }
 
-header ul a:hover {
-    top: 5px;
+.header__menu ul a:hover {
+    color: #0056b3;
     text-decoration: none;
 }
 
-.menu li {
+.header__menu li {
     display: inline-block;
     margin: 0 5px 0 5px;
     vertical-align: middle;
 }
 
-.user-logo {
+.header__user-logo {
     background-color: #EEEEEE;
     width: 30px;
     border-radius: 52px;
@@ -44,7 +44,7 @@ header ul a:hover {
     border: 1px solid #d1d1d1;
 }
 
-.user-logo > span {
+.header__user-logo > span {
     vertical-align: middle;
 }
 
@@ -77,4 +77,8 @@ span.title {
 
 label {
     font-size: 14px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }

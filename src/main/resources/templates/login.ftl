@@ -1,10 +1,10 @@
 <#import "common.ftl" as c/>
 
-<#macro resources>
+<#macro css>
 <link rel="stylesheet" href="/static/css/site/login.css"/>
 </#macro>
 
-<@c.page "Представьтесь" resources>
+<@c.page "Представьтесь" css js "" false>
 
 <section class="login-section">
 
@@ -23,7 +23,9 @@
     </form>
 </section>
 
+</@c.page>
 
+<#macro js>
 <script>
     $(function () {
         var $userIdField = $("#userId");
@@ -52,5 +54,4 @@
         });
     })
 </script>
-
-</@c.page>
+</#macro>

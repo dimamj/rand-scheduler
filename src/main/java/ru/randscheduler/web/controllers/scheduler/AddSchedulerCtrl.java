@@ -1,4 +1,4 @@
-package ru.randscheduler.web.controllers;
+package ru.randscheduler.web.controllers.scheduler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

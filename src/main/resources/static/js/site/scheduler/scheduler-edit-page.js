@@ -1,8 +1,6 @@
 (function () {
 
-    var app = angular.module("scheduler-page", ["ngAnimate"]);
-
-    var parseDateFormat = "yy-mm-dd";
+    var app = angular.module("scheduler-edit", ["ngAnimate"]);
 
     app.controller("main", function ($scope, $http) {
             var vm = $scope.vm = {};
@@ -37,32 +35,11 @@
 
             function loadScheduler(resp) {
                 var res = resp.data;
-                var daysMap = {};
+                var daysMap = new Calendar(res).create();
 
                 fromDate = res.from;
                 toDate = res.to;
                 actions = res.actions;
-
-                var fromDateJs = $.datepicker.parseDate(parseDateFormat, fromDate);
-                var currentDate = new Date();
-                currentDate.setHours(0, 0, 0, 0);
-
-                var currentDateStr = currentDate.toDateString();
-
-                res.dates.forEach(function (d) {
-                    var day = daysMap[d] = {actions: []};
-                    var date = $.datepicker.parseDate(parseDateFormat, d);
-
-                    if (date < fromDateJs || date < currentDate) {
-                        day.class = "old-date";
-                    } else if (date.toDateString() === currentDateStr) {
-                        day.class = "current-date";
-                    }
-                });
-
-                res.actions.forEach(function (a) {
-                    daysMap[a.date].actions.push(a.action);
-                });
 
                 vm.days = {};
 

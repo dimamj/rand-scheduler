@@ -34,7 +34,7 @@ public class DefaultSchedulerCreator implements SchedulerCreator {
 
         for (String userAction : f.getActions()) {
 
-            for (;;) {
+            while (res.size() != days) {
                 int randVal = rand.nextInt(days);
                 if (selectedRandValues.add(randVal)) {
                     res.add(Action.create(f.getFrom().plusDays(randVal), userAction));

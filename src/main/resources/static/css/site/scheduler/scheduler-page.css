@@ -32,13 +32,13 @@ button.btn {
     padding-top: 50px;
 }
 
-.calendar .days-wrap {
+.calendar__days-wrap {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-.calendar .day {
+.calendar__day {
     width: 150px;
     padding: 10px;
     margin: 1px;
@@ -46,32 +46,42 @@ button.btn {
     background-color: #edededd4;
     box-shadow: 0 0 1px black;
     cursor: pointer;
+    position: relative;
 }
 
-.calendar .day.old-date {
+.calendar__day.old-date {
     opacity: 0.3;
 }
 
-.calendar .day.current-date {
+.calendar__day.current-date {
     background-color: #4caf506e;
 }
 
-.calendar .day:hover {
+.calendar__day:hover {
     box-shadow: 0 0 6px 1px #00000059;
 }
 
-.calendar .day > .date {
+.calendar__date {
     text-align: center;
     display: block;
 }
 
-.calendar .day.ng-enter {
+.calendar__day.ng-enter {
     opacity: 0;
     height: 0;
     transition: 1s ease 0.3s;
 }
 
-.calendar .day.ng-enter-active {
+.calendar__day.ng-enter-active {
     height: 120px;
     opacity: 1;
+}
+
+.calendar__action-list {
+    list-style-type: none;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 6px;
+    padding: 0;
+    text-align: center;
 }
