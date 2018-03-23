@@ -48,6 +48,10 @@ html, body {
     vertical-align: middle;
 }
 
+.header__exit {
+    cursor: pointer;
+}
+
 main {
     min-height: 88.3%;
     margin-bottom: -40px;

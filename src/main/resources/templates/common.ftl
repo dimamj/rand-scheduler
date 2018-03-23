@@ -22,6 +22,9 @@
                     <li><a href="/">Список</a></li>
                     <li><a href="/scheduler/add">Добавить</a></li>
                     <li class="header__user-logo"><span>${userShortId}</span></li>
+                    <li><img class="header__exit"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAATlBMVEUAAABsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGyaGaPCAAAAGXRSTlMAAQIEBgcOFBUeJypARlZ7hYyRlLLFx+Lx8nYgtQAAAGxJREFUGFeN0MkOgCAMRdGnojjghGP//0dF0FiQGO+KnkXTAPKCi2hTuXCVDxLNlXsLjoaLCJL6wjYJEQJ64pgq20IjQ0F3fQR3GewE9GkeZhqDjJyU/T7ew6sLm9VOnfs8gLNCmOE3Gq75dABMgRHvtDsnzQAAAABJRU5ErkJggg==">
+                    </li>
                 </ul>
             </div>
         </#if>
@@ -38,6 +41,15 @@
     <span>by dMJ</span>
 </footer>
 
+<script>
+    $(function () {
+        $(".header__exit").on("click", function () {
+            $.post("/login?exit=1", {}, function (res) {
+                if (res === "ok") location.href = "/login";
+            });
+        })
+    })
+</script>
     <@jsMacro/>
 <script type="text/javascript" src="/static/js/lib/bootstrap.min.js"></script>
 </body>

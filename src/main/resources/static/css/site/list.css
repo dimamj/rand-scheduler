@@ -66,3 +66,15 @@
 .scheduler__actions > span {
     display: block;
 }
+
+.scheduler_not-active {
+    opacity: 0.5;
+}
+
+.title-line {
+    display: flex;
+}
+
+.title-line__active-filter {
+    margin-left: auto;
+}

@@ -6,10 +6,17 @@
 
 
 <@c.page "Список планировщиков" css js "ng-app='list-page' ng-controller='main'">
-<h4>Список планировщиков</h4>
+<div class="title-line">
+    <h4>Список планировщиков</h4>
+    <div class="title-line__active-filter custom-control custom-checkbox my-1 mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="showNotActive" ng-model="vm.showNotActive">
+        <label class="custom-control-label" for="showNotActive">Показать неактивные</label>
+    </div>
+</div>
 
 <section class="list">
-    <div class="scheduler" ng-repeat="s in vm.schedulers" ng-click="vm.schedulerClick(s,$event.target)">
+    <div class="scheduler" ng-repeat="s in vm.schedulers" ng-click="vm.schedulerClick(s,$event.target)"
+         ng-class="{'scheduler_not-active' : s.futureActionCount === 0}">
         <span class="scheduler__id">{{'#' + ($index+1)}}</span>
         <span class="scheduler__name">{{s.filterData.schedulerName}}</span>
         <div class="scheduler__actions">
