@@ -2,9 +2,7 @@ package ru.randscheduler.repository;
 
 import com.mongodb.BasicDBObject;
 import org.mongodb.morphia.AdvancedDatastore;
-import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.randscheduler.data.user_data.SchedulerData;
 import ru.randscheduler.data.user_data.UserData;

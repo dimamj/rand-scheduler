@@ -24,7 +24,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver() {
             @Override
             protected Class<?> getViewClass() {
-//если что потом через этот метод, можно будет создать обьект таким образом – getViewClass().newInstance()
                 return FreemarkerViewConf.class;
             }
         };

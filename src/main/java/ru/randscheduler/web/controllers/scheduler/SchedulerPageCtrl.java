@@ -2,7 +2,6 @@ package ru.randscheduler.web.controllers.scheduler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.val;
 import org.mongodb.morphia.query.ArraySlice;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.randscheduler.data.SchedulerViewData;
 import ru.randscheduler.data.user_data.SchedulerData;
-import ru.randscheduler.data.user_data.UserData;
 import ru.randscheduler.repository.UserRepository;
 import ru.randscheduler.tools.RangeUtils;
 
